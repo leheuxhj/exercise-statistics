@@ -4,6 +4,7 @@ import android.app.Application
 import com.hollyleheux.exercisestatistics.di.AndroidModule
 import com.hollyleheux.exercisestatistics.di.AppComponent
 import com.hollyleheux.exercisestatistics.di.DaggerAppComponent
+import timber.log.Timber
 
 class ExerciseStatisticsApplication : Application() {
     companion object {
@@ -13,6 +14,7 @@ class ExerciseStatisticsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeDaggerAppComponent()
+        initializeTimber()
     }
 
     private fun initializeDaggerAppComponent() {
@@ -20,5 +22,11 @@ class ExerciseStatisticsApplication : Application() {
                 .builder()
                 .androidModule(AndroidModule(this))
                 .build()
+    }
+
+    private fun initializeTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
