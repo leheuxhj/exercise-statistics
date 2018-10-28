@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Exercise Statistics</string>
+    <string name="strava_auth_success_message">Strava successfully authorized</string>
+    <string name="strava_auth_failed_message">Strava authorization unsuccessful</string>
 </resources>

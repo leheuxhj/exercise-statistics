@@ -5,6 +5,9 @@ interface AuthorizationContract {
     interface View {
         fun loadUrl(urlToLoad: String)
         fun stopLoading()
+        fun showAuthorizationSuccessMessage()
+        fun closeScreen()
+        fun showAuthorizationFailedMessage()
     }
 
     interface Presenter {

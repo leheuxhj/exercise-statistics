@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.support.annotation.VisibleForTesting
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.hollyleheux.exercisestatistics.screens.BaseActivity
 import com.hollyleheux.exercisestatistics.R
 import com.hollyleheux.exercisestatistics.di.AppComponent
+import com.hollyleheux.exercisestatistics.screens.BaseActivity
 import com.hollyleheux.exercisestatistics.screens.authorization.di.AuthorizationModule
 import kotlinx.android.synthetic.main.activity_authorization.*
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class AuthorizationActivity : BaseActivity(), AuthorizationContract.View {
@@ -23,6 +24,18 @@ class AuthorizationActivity : BaseActivity(), AuthorizationContract.View {
 
     override fun stopLoading() {
         authorization_webview.stopLoading()
+    }
+
+    override fun showAuthorizationSuccessMessage() {
+        toast(R.string.strava_auth_success_message)
+    }
+
+    override fun closeScreen() {
+        finish()
+    }
+
+    override fun showAuthorizationFailedMessage() {
+        toast(R.string.strava_auth_failed_message)
     }
 
     override fun onStart() {

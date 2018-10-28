@@ -50,10 +50,13 @@ class AuthorizationPresenter(
     inner class UserAuthorizedAndAccessTokenStoredCompletableObserver : DisposableCompletableObserver() {
         override fun onComplete() {
             Timber.d("AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onComplete")
+            view.showAuthorizationSuccessMessage()
+            view.closeScreen()
         }
 
         override fun onError(e: Throwable) {
             Timber.e(e, "AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onError")
+            view.showAuthorizationFailedMessage()
         }
     }
 }
