@@ -2,6 +2,8 @@ package com.hollyleheux.exercisestatistics.screens.authorization
 
 import android.os.Bundle
 import android.support.annotation.VisibleForTesting
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.hollyleheux.exercisestatistics.BaseActivity
 import com.hollyleheux.exercisestatistics.R
 import com.hollyleheux.exercisestatistics.di.AppComponent
@@ -15,12 +17,17 @@ class AuthorizationActivity : BaseActivity(), AuthorizationContract.View {
     @VisibleForTesting
     lateinit var presenter: AuthorizationPresenter
 
-    override fun showText(text: String) {
-        authorization_text.text = text
+    override fun loadUrl(urlToLoad: String) {
+        authorization_webview.loadUrl(urlToLoad)
+    }
+
+    override fun stopLoading() {
+        authorization_webview.stopLoading()
     }
 
     override fun onStart() {
         super.onStart()
+        authorization_webview.webViewClient = StravaAuthWebViewClient()
         presenter.onStart()
     }
 
@@ -31,5 +38,12 @@ class AuthorizationActivity : BaseActivity(), AuthorizationContract.View {
 
     override fun injectDependencies(appComponent: AppComponent) {
         appComponent.plus(AuthorizationModule(this)).inject(this)
+    }
+
+    private inner class StravaAuthWebViewClient : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+            return presenter.overrideUrlLoading(url)
+        }
     }
 }
