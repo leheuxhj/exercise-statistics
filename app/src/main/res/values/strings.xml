@@ -2,4 +2,10 @@
     <string name="app_name">Exercise Statistics</string>
     <string name="strava_auth_success_message">Strava successfully authorized</string>
     <string name="strava_auth_failed_message">Strava authorization unsuccessful</string>
+    <string name="cycling">cycling</string>
+    <string name="running">running</string>
+    <string name="swimming">swimming</string>
+    <string name="no_exercise_message">You haven\'t done any exercise this year? Oh&#8230;</string>
+    <string name="exercise_for_this_year_title">So far this year I have&#8230;</string>
+    <string name="kilometer_unit">km</string>
 </resources>
