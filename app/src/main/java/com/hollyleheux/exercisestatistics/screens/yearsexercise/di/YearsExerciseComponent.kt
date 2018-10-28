@@ -5,7 +5,7 @@ import com.hollyleheux.exercisestatistics.screens.yearsexercise.YearsExerciseAct
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent(modules = arrayOf(YearsExerciseModule::class))
+@Subcomponent(modules = [YearsExerciseModule::class])
 interface YearsExerciseComponent {
     fun inject(activity: YearsExerciseActivity)
 }

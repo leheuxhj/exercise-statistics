@@ -50,6 +50,13 @@ constructor(private val resourceLocator: ResourceLocator, private val stravaServ
         return stravaService.getAccessToken(stravaAccessTokenRequest).map { stravaMapper.map(it) }
     }
 
+    override fun hasUserAuthorizedAccessToData(): Boolean {
+        return when {
+            !accessToken.isNullOrBlank() -> true
+            else -> !getAccessTokenFromSharedPreferences().isNullOrBlank()
+        }
+    }
+
     override fun getAthleteStats(singleObserver: DisposableSingleObserver<AthleteStats>) {
         if (athleteId == null) getAthleteIdFromSharedPreference()
         if (accessToken == null) getAccessTokenFromSharedPreferences()

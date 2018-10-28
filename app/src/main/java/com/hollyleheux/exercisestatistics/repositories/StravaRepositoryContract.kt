@@ -9,5 +9,6 @@ interface StravaRepositoryContract {
 
     fun getAuthRequestUrl(): String
     fun getAccessTokenFromStrava(userAuthCode: String): Single<StravaAccessToken>
+    fun hasUserAuthorizedAccessToData(): Boolean
     fun getAthleteStats(singleObserver: DisposableSingleObserver<AthleteStats>)
 }
