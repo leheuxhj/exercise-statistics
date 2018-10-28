@@ -2,6 +2,7 @@ package com.hollyleheux.exercisestatistics.interactors
 
 import com.hollyleheux.exercisestatistics.data.local.LocalDataManager
 import com.hollyleheux.exercisestatistics.repositories.StravaAuthorizationRepository
+import com.hollyleheux.exercisestatistics.utils.applySchedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
@@ -25,8 +26,6 @@ class GetUserAuthorizationAndStoreAccessToken @Inject constructor(
                             .mergeWith(localDataManager.setStravaAthleteId(athleteId))
                 }
 
-        completable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer)
+        completable.applySchedulers().subscribe(observer)
     }
 }
