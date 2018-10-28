@@ -1,6 +1,6 @@
 package com.hollyleheux.exercisestatistics.screens.yearsexercise
 
-import com.hollyleheux.exercisestatistics.BasePresenter
+import com.hollyleheux.exercisestatistics.screens.BasePresenter
 import timber.log.Timber
 
 

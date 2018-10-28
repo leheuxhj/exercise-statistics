@@ -1,6 +1,7 @@
 package com.hollyleheux.exercisestatistics.screens.authorization.di
 
 import com.hollyleheux.exercisestatistics.di.ActivityScope
+import com.hollyleheux.exercisestatistics.interactors.GetUserAuthorizationAndStoreAccessToken
 import com.hollyleheux.exercisestatistics.repositories.StravaAuthorizationRepository
 import com.hollyleheux.exercisestatistics.screens.authorization.AuthorizationActivity
 import com.hollyleheux.exercisestatistics.screens.authorization.AuthorizationContract
@@ -18,6 +19,7 @@ class AuthorizationModule(val activity: AuthorizationActivity) {
     @Provides
     @ActivityScope
     fun provideAuthorizationPresenter(view: AuthorizationContract.View,
-            stravaAuthorizationRepository: StravaAuthorizationRepository) = AuthorizationPresenter(view,
-            stravaAuthorizationRepository)
+            stravaAuthorizationRepository: StravaAuthorizationRepository,
+            getUserAuthorizationAndStoreAccessToken: GetUserAuthorizationAndStoreAccessToken) = AuthorizationPresenter(
+            view, stravaAuthorizationRepository, getUserAuthorizationAndStoreAccessToken)
 }

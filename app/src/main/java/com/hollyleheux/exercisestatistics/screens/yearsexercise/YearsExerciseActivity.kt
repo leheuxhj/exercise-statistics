@@ -3,7 +3,7 @@ package com.hollyleheux.exercisestatistics.screens.yearsexercise
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.VisibleForTesting
-import com.hollyleheux.exercisestatistics.BaseActivity
+import com.hollyleheux.exercisestatistics.screens.BaseActivity
 import com.hollyleheux.exercisestatistics.R
 import com.hollyleheux.exercisestatistics.di.AppComponent
 import com.hollyleheux.exercisestatistics.screens.authorization.AuthorizationActivity

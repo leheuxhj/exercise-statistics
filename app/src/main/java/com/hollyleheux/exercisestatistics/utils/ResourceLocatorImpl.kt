@@ -11,6 +11,7 @@ internal constructor(private val context: Context) : ResourceLocator() {
     override fun getStringResource(stringResource: Strings): String {
         @StringRes val stringResId = when (stringResource) {
             ResourceLocator.Strings.KOTLINSTRAVATRIAL_STRAVA_CLIENT_ID -> R.string.kotlinstravatrial_strava_client_id
+            ResourceLocator.Strings.STRAVA_CLIENT_SECRET -> R.string.strava_client_secret
         }
         return getString(stringResId)
     }

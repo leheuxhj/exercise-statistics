@@ -2,13 +2,16 @@ package com.hollyleheux.exercisestatistics.screens.authorization
 
 import android.net.Uri
 import android.util.Patterns
-import com.hollyleheux.exercisestatistics.BasePresenter
+import com.hollyleheux.exercisestatistics.interactors.GetUserAuthorizationAndStoreAccessToken
 import com.hollyleheux.exercisestatistics.repositories.StravaAuthorizationRepository
+import com.hollyleheux.exercisestatistics.screens.BasePresenter
+import io.reactivex.observers.DisposableCompletableObserver
 import timber.log.Timber
 
 class AuthorizationPresenter(
         override val view: AuthorizationContract.View,
-        private val stravaAuthorizationRepository: StravaAuthorizationRepository) :
+        private val stravaAuthorizationRepository: StravaAuthorizationRepository,
+        private val getUserAuthorizationAndStoreAccessToken: GetUserAuthorizationAndStoreAccessToken) :
     BasePresenter<AuthorizationContract.View>(), AuthorizationContract.Presenter {
 
     companion object {
@@ -39,6 +42,18 @@ class AuthorizationPresenter(
         if (uri != null) {
             val userAuthCode = Uri.parse(uri).getQueryParameter(AuthorizationPresenter.AUTH_CODE_PARAMETER_NAME)
             Timber.d("AuthorizationPresenter: userAuthCode is $userAuthCode")
+            getUserAuthorizationAndStoreAccessToken.execute(userAuthCode,
+                    UserAuthorizedAndAccessTokenStoredCompletableObserver())
+        }
+    }
+
+    inner class UserAuthorizedAndAccessTokenStoredCompletableObserver : DisposableCompletableObserver() {
+        override fun onComplete() {
+            Timber.d("AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onComplete")
+        }
+
+        override fun onError(e: Throwable) {
+            Timber.e(e, "AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onError")
         }
     }
 }

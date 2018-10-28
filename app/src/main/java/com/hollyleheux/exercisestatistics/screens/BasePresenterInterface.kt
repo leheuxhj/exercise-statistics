@@ -1,4 +1,4 @@
-package com.hollyleheux.exercisestatistics
+package com.hollyleheux.exercisestatistics.screens
 
 interface BasePresenterInterface<out V> {
 

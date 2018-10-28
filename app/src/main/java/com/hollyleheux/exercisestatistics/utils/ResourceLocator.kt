@@ -5,6 +5,7 @@ abstract class ResourceLocator {
     abstract fun getStringResource(stringResource: Strings): String
 
     enum class Strings {
-        KOTLINSTRAVATRIAL_STRAVA_CLIENT_ID
+        KOTLINSTRAVATRIAL_STRAVA_CLIENT_ID,
+        STRAVA_CLIENT_SECRET
     }
 }

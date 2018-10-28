@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.annotation.VisibleForTesting
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.hollyleheux.exercisestatistics.BaseActivity
+import com.hollyleheux.exercisestatistics.screens.BaseActivity
 import com.hollyleheux.exercisestatistics.R
 import com.hollyleheux.exercisestatistics.di.AppComponent
 import com.hollyleheux.exercisestatistics.screens.authorization.di.AuthorizationModule

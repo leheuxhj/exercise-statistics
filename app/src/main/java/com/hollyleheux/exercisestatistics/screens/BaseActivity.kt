@@ -1,7 +1,8 @@
-package com.hollyleheux.exercisestatistics
+package com.hollyleheux.exercisestatistics.screens
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.hollyleheux.exercisestatistics.ExerciseStatisticsApplication
 import com.hollyleheux.exercisestatistics.di.AppComponent
 
 abstract class BaseActivity : AppCompatActivity() {

@@ -9,7 +9,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(AndroidModule::class)])
+@Component(modules = [(AndroidModule::class), (DataModule::class)])
 interface AppComponent {
     fun inject(app: ExerciseStatisticsApplication)
     fun plus(yearsExerciseModule: YearsExerciseModule): YearsExerciseComponent
