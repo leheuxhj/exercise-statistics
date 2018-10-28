@@ -1,6 +1,7 @@
 package com.hollyleheux.exercisestatistics.screens.yearsexercise.di
 
 import com.hollyleheux.exercisestatistics.di.ActivityScope
+import com.hollyleheux.exercisestatistics.repositories.StravaRepository
 import com.hollyleheux.exercisestatistics.screens.yearsexercise.YearsExerciseActivity
 import com.hollyleheux.exercisestatistics.screens.yearsexercise.YearsExerciseContract
 import com.hollyleheux.exercisestatistics.screens.yearsexercise.YearsExercisePresenter
@@ -16,5 +17,6 @@ class YearsExerciseModule(val activity: YearsExerciseActivity) {
 
     @Provides
     @ActivityScope
-    fun provideYearsExercisePresenter(view: YearsExerciseContract.View) = YearsExercisePresenter(view)
+    fun provideYearsExercisePresenter(view: YearsExerciseContract.View,
+            stravaRepository: StravaRepository) = YearsExercisePresenter(view, stravaRepository)
 }

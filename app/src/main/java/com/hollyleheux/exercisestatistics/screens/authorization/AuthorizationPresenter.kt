@@ -3,14 +3,14 @@ package com.hollyleheux.exercisestatistics.screens.authorization
 import android.net.Uri
 import android.util.Patterns
 import com.hollyleheux.exercisestatistics.interactors.GetUserAuthorizationAndStoreAccessToken
-import com.hollyleheux.exercisestatistics.repositories.StravaAuthorizationRepository
+import com.hollyleheux.exercisestatistics.repositories.StravaRepository
 import com.hollyleheux.exercisestatistics.screens.BasePresenter
 import io.reactivex.observers.DisposableCompletableObserver
 import timber.log.Timber
 
 class AuthorizationPresenter(
         override val view: AuthorizationContract.View,
-        private val stravaAuthorizationRepository: StravaAuthorizationRepository,
+        private val stravaRepository: StravaRepository,
         private val getUserAuthorizationAndStoreAccessToken: GetUserAuthorizationAndStoreAccessToken) :
     BasePresenter<AuthorizationContract.View>(), AuthorizationContract.Presenter {
 
@@ -21,7 +21,7 @@ class AuthorizationPresenter(
     }
 
     override fun onStart() {
-        val urlString = stravaAuthorizationRepository.getAuthRequestUrl()
+        val urlString = stravaRepository.getAuthRequestUrl()
         Timber.d("AuthorizationPresenter: url to load is $urlString")
         if (Patterns.WEB_URL.matcher(urlString).matches()) view.loadUrl(urlString)
     }
