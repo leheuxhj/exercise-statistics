@@ -43,7 +43,7 @@ class AuthorizationPresenter(
             val userAuthCode = Uri.parse(uri).getQueryParameter(AuthorizationPresenter.AUTH_CODE_PARAMETER_NAME)
             Timber.d("AuthorizationPresenter: userAuthCode is $userAuthCode")
             getUserAuthorizationAndStoreAccessToken.execute(userAuthCode,
-                    UserAuthorizedAndAccessTokenStoredCompletableObserver())
+                    UserAuthorizedAndAccessTokenStoredCompletableObserver().addToCompositeDisposable())
         }
     }
 

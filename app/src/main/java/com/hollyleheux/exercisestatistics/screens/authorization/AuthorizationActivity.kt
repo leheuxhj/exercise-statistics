@@ -34,6 +34,12 @@ class AuthorizationActivity : BaseActivity(), AuthorizationContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authorization)
+        presenter.onCreate()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
     override fun injectDependencies(appComponent: AppComponent) {
