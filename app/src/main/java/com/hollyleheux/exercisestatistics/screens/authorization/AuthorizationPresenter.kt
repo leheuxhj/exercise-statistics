@@ -18,11 +18,12 @@ class AuthorizationPresenter(
         private const val STRAVA_AUTH_HOST_URL = "www.strava.com"
         private const val REDIRECT_HOST_URI = "localhost"
         private const val AUTH_CODE_PARAMETER_NAME = "code"
+        private const val AUTHORIZATION_PRESENTER_TAG = "AuthorizationPresenter"
     }
 
     override fun onStart() {
         val urlString = stravaRepository.getAuthRequestUrl()
-        Timber.d("AuthorizationPresenter: url to load is $urlString")
+        Timber.d("$AUTHORIZATION_PRESENTER_TAG: url to load is $urlString")
         if (Patterns.WEB_URL.matcher(urlString).matches()) view.loadUrl(urlString)
     }
 
@@ -41,7 +42,7 @@ class AuthorizationPresenter(
     private fun handleRedirectHostUri(uri: String?) {
         if (uri != null) {
             val userAuthCode = Uri.parse(uri).getQueryParameter(AuthorizationPresenter.AUTH_CODE_PARAMETER_NAME)
-            Timber.d("AuthorizationPresenter: userAuthCode is $userAuthCode")
+            Timber.d("$AUTHORIZATION_PRESENTER_TAG: userAuthCode is $userAuthCode")
             getUserAuthorizationAndStoreAccessToken.execute(userAuthCode,
                     UserAuthorizedAndAccessTokenStoredCompletableObserver().addToCompositeDisposable())
         }
@@ -49,13 +50,13 @@ class AuthorizationPresenter(
 
     inner class UserAuthorizedAndAccessTokenStoredCompletableObserver : DisposableCompletableObserver() {
         override fun onComplete() {
-            Timber.d("AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onComplete")
+            Timber.d("$AUTHORIZATION_PRESENTER_TAG: UserAuthorizedAndAccessTokenStoredCompletableObserver.onComplete")
             view.showAuthorizationSuccessMessage()
             view.closeScreen()
         }
 
         override fun onError(e: Throwable) {
-            Timber.e(e, "AuthorizationPresenter: UserAuthorizedAndAccessTokenStoredCompletableObserver.onError")
+            Timber.e(e, "$AUTHORIZATION_PRESENTER_TAG: UserAuthorizedAndAccessTokenStoredCompletableObserver.onError")
             view.showAuthorizationFailedMessage()
         }
     }

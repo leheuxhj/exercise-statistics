@@ -15,10 +15,11 @@ class YearsExercisePresenter(
 
     companion object {
         private const val METERS_IN_KILOMETERS = 1000
+        private const val YEARS_EXERCISE_PRESENTER_TAG = "YearsExercisePresenter"
     }
 
     override fun onStart() {
-        Timber.d("YearsExercisePresenter: onStart called")
+        Timber.d("$YEARS_EXERCISE_PRESENTER_TAG: onStart called")
         when (stravaRepository.hasUserAuthorizedAccessToData()) {
             true -> stravaRepository.getAthleteStats(AthleteStatsSingleObserver().addToCompositeDisposable())
             false -> navigator.navigateToAuthActivity()
@@ -28,7 +29,7 @@ class YearsExercisePresenter(
     inner class AthleteStatsSingleObserver : DisposableSingleObserver<AthleteStats>() {
 
         override fun onSuccess(stats: AthleteStats) {
-            Timber.d("YearsExercisePresenter: AthleteStatsSingleObserver $stats")
+            Timber.d("$YEARS_EXERCISE_PRESENTER_TAG: AthleteStatsSingleObserver $stats")
 
             if (stats.yearToDateRideTotals?.distanceCovered == 0f
                 && stats.yearToDateRunTotals?.distanceCovered == 0f
@@ -44,7 +45,7 @@ class YearsExercisePresenter(
         }
 
         override fun onError(e: Throwable) {
-            Timber.e(e, "YearsExercisePresenter: AthleteStatsSingleObserver.onError")
+            Timber.e(e, "$YEARS_EXERCISE_PRESENTER_TAG: AthleteStatsSingleObserver.onError")
         }
     }
 }
