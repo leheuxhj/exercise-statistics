@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract class ActivityModule(protected val activity: AppCompatActivity) {
+abstract class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     @ActivityScope

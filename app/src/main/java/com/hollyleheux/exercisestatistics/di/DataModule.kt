@@ -14,6 +14,10 @@ import javax.inject.Singleton
 @Module
 class DataModule {
 
+    companion object {
+        private const val STRAVA_BASE_URL = "https://www.strava.com/"
+    }
+
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient =
@@ -27,7 +31,7 @@ class DataModule {
     @Singleton
     fun provideRestAdapter(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("https://www.strava.com/")
+                .baseUrl(STRAVA_BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
